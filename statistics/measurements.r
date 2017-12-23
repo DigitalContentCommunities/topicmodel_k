@@ -1,18 +1,16 @@
 library('topicmodels')
 
-load('topics_2017oct/dtm.rdata')
+load('../models/dtm.rdata')
 
 data <- data.frame(k= numeric(0), p= numeric(0), logl= numeric(0), harmlogl=numeric(0) )
 
 for( k in 2:250 ){
 
-  load( paste('topics_2017oct/topic-', k, '.rdata', sep = '') )
+  load( paste('../models/topic-', k, '.rdata', sep = '') )
 
   per <- perplexity(model, dtm )
-  print( per )
 
   logL <- logLik( model )
-  print( logL )
 
   library(Rmpfr)
 
@@ -26,10 +24,9 @@ for( k in 2:250 ){
   llMed <- median( ll )
   ll = as.double( llMed - log( mean( exp( -mpfr(ll , prec = precision) + llMed ) ) ) )
 
-  print("Loglike min")
-  print( ll )
-
   data[1, ] <- c( k, per, logL, ll )
+
+  print( k, 'done')
 
 }
 
