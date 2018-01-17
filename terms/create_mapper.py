@@ -23,11 +23,10 @@ for c in range( 1, 5):
             topic = int( topic.split('Topic')[1] ) - 1 ## python indexing
             label = sh.cell_value(rowx=r, colx=0)
 
-            mapper[c][topic] = label
+            mapper[c][topic] = r ## label these by row IDs to ensure uniformity
 
 print "topics <- list()"
 
 for entry in mapper:
-
-    entry = map( lambda x: '"' + x + '"', entry )
+    entry = map( str, entry )
     print "topics[", len( entry ), "] = c(", ','.join( entry ) , ")"
