@@ -6,6 +6,7 @@ library(ggplot2)
 library(scales)
 
 source('../iwanthue.r')
+source('../mapper.r')
 
 for( i in c(34, 25, 28, 33) ) {
 
@@ -25,12 +26,14 @@ for( i in c(34, 25, 28, 33) ) {
   d$year <- d$Group.2
   d$value <- d$x
 
+  d$label <- topics[[i]][ d$topic ]
+  d$label_colour <- iwanthue( 46 )[ d$label ]
+
   g <-
   ggplot() +
-    geom_bar( aes( year, fill = topic, weight = value ) , data = d, na.rm = T, position = "fill" ) +
+    geom_bar( aes( year, fill = label_colour , weight = value ) , data = d, na.rm = T, position = "fill" ) +
     theme_minimal() +
     xlab('Year') + ylab('% of documents') +
-    scale_fill_manual( values = iwanthue( 53 ) ) +
     theme(legend.position="none")
 
   ggsave( g, file = paste('timeline-', i, '.pdf', sep = '' ) )
