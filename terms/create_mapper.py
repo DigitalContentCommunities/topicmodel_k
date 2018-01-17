@@ -29,4 +29,4 @@ print "topics <- list()"
 
 for entry in mapper:
     entry = map( str, entry )
-    print "topics[", len( entry ), "] = c(", ','.join( entry ) , ")"
+    print "topics[[", len( entry ), "]] = c(", ','.join( entry ) , ")"
