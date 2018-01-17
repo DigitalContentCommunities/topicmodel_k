@@ -3,7 +3,7 @@ library(topicmodels)
 for( i in c(33,25,28,34) ) {
 
 
-  f = paste( '../topics_2017oct/topic-', i, '.rdata', sep = '' )
+  f = paste( '../models/topic-', i, '.rdata', sep = '' )
 
   load( f )
 

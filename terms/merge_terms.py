@@ -3,7 +3,7 @@ import os
 
 import xlwt
 
-book = xlwt.Workbook('terms-all.xls')
+book = xlwt.Workbook()
 sh = book.add_sheet('raw')
 
 files = os.listdir('.')
@@ -22,11 +22,11 @@ for i, k in enumerate( files ):
 
         terms = []
 
-        for j in range(1, 11):
+        for a in range(1, 11):
 
-            j = 'V' + str(j)
+            a = 'V' + str(a)
 
-            terms.append( row[j] )
+            terms.append( row[a] )
 
         ##
 
@@ -37,4 +37,4 @@ for i, k in enumerate( files ):
 
         sh.write(j, i, text)
 
-book.save('terms-all.xls')
+book.save('terms_all.xls')
