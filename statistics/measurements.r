@@ -24,9 +24,7 @@ for( k in 2:250 ){
   llMed <- median( ll )
   ll = as.double( llMed - log( mean( exp( -mpfr(ll , prec = precision) + llMed ) ) ) )
 
-  data[1, ] <- c( k, per, logL, ll )
-
-  print( k, 'done')
+  data <- rbind( data, c( k, per, logL, ll ) )
 
 }
 
